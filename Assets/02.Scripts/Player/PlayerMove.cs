@@ -65,10 +65,15 @@ public class PlayerMove : MonoBehaviour
         // 3. 그 방향으로 이동을한다.
         Vector2 position = transform.position; // 현재 위치
         
+        
+        // 쉬운 버전
+        // transform.Translate(direction * Speed * Time.deltaTime);
+        
         // 새로운 위치 = 현재 위치 + (방향 * 속력) * 시간
         // 새로운 위치 = 현재 위치 + 속도 * 시간
-        //       새로운 위치 = 현재 위치  +  방향     *  속력
+        //       새로운 위치 = 현재 위치  +  방향     *  속력   * 시간
         Vector2 newPosition = position + direction * Speed * Time.deltaTime;  // 새로운 위치
+        
         
         // Time.deltaTime: 이전 프레임으로부터 현재 프레임까지 시간이 얼마나 흘렀는지.. 나타내는 값
         //                 1초 / fps 값과 비슷하다.
@@ -88,19 +93,9 @@ public class PlayerMove : MonoBehaviour
         {
             newPosition.x = MinX;
         }
-
-        if (newPosition.y < MinY)
-        {
-            newPosition.y = MinY;
-        }
-        else if (newPosition.y > MaxY)
-        {
-            newPosition.y = MaxY;
-        }
+        newPosition.y = Mathf.Clamp(newPosition.y, MinY, MaxY);
         
         
         transform.position = newPosition;         // 새로운 위치로 갱신
-        
-           
     }
 }
