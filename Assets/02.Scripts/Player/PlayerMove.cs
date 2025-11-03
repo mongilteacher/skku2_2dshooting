@@ -12,8 +12,10 @@ public class PlayerMove : MonoBehaviour
     // 3. 이동
     
     // 필요 속성:
+    [Header("능력치")]
     public float Speed = 3;
 
+    [Header("이동범위")]
     public float MinX = -2;
     public float MaxX =  2;
     public float MinY = -5;
