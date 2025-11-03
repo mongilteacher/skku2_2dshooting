@@ -14,7 +14,9 @@ public class PlayerMove : MonoBehaviour
     // 필요 속성:
     [Header("능력치")]
     public float Speed = 3;
-
+    public float MaxSpeed = 10;
+    public float MinSpeed = 1;
+    
     [Header("이동범위")]
     public float MinX = -2;
     public float MaxX =  2;
@@ -31,6 +33,17 @@ public class PlayerMove : MonoBehaviour
         float v = Input.GetAxisRaw("Vertical");   // 수직 입력에 대한 값을 -1, 0, 1로 가져온다.
 
         Debug.Log($"h: {h}, v: {v}");
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            Speed++;
+        }
+        else if (Input.GetKey(KeyCode.E))
+        {
+            Speed--;
+        }
+        
+        Speed = Mathf.Clamp(Speed, MinSpeed, MaxSpeed);
+        
         
         
         
