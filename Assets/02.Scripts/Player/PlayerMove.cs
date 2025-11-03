@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 // 플레이어 이동
@@ -16,6 +17,7 @@ public class PlayerMove : MonoBehaviour
     public float Speed = 3;
     public float MaxSpeed = 10;
     public float MinSpeed = 1;
+    public float ShiftSpeed = 1.2f;
     
     [Header("이동범위")]
     public float MinX = -2;
@@ -42,9 +44,15 @@ public class PlayerMove : MonoBehaviour
             Speed--;
         }
         
+        // 1 ~ 10
         Speed = Mathf.Clamp(Speed, MinSpeed, MaxSpeed);
         
-        
+        float finalSpeed = Speed;
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            // 1.2 ~ 12
+            finalSpeed = finalSpeed * ShiftSpeed;
+        }
         
         
         // 2. 입력으로부터 방향을 구한다.
@@ -72,7 +80,7 @@ public class PlayerMove : MonoBehaviour
         // 새로운 위치 = 현재 위치 + (방향 * 속력) * 시간
         // 새로운 위치 = 현재 위치 + 속도 * 시간
         //       새로운 위치 = 현재 위치  +  방향     *  속력   * 시간
-        Vector2 newPosition = position + direction * Speed * Time.deltaTime;  // 새로운 위치
+        Vector2 newPosition = position + direction * finalSpeed * Time.deltaTime;  // 새로운 위치
         
         
         // Time.deltaTime: 이전 프레임으로부터 현재 프레임까지 시간이 얼마나 흘렀는지.. 나타내는 값

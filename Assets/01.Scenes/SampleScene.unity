@@ -441,6 +441,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 3
+  MaxSpeed: 10
+  MinSpeed: 1
+  ShiftSpeed: 2
   MinX: -2.5
   MaxX: 2.5
   MinY: -5
