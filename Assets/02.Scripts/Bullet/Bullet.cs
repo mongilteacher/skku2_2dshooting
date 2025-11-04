@@ -18,7 +18,9 @@ public class Bullet : MonoBehaviour
 
     private void Update()
     {
-        _speed += Time.deltaTime; // 1초당 +1과 같다.
+        _speed += Time.deltaTime * Acceleration; // 초당 +1 * 1.2f;
+        _speed  = Mathf.Min(_speed, EndSpeed);
+        //         ㄴ 어떤 속성과 어떤 메서드를 가지고 있는지 톺아볼 필요가 있다.
         
         
         // 방향을 구한다.
