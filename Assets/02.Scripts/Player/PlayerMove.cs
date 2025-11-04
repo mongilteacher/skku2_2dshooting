@@ -19,22 +19,25 @@ public class PlayerMove : MonoBehaviour
     public float MinSpeed = 1;
     public float ShiftSpeed = 1.2f;
     
+    [Header("시작위치")]
+    private Vector2 _originPosition;
+    
+    
     [Header("이동범위")]
     public float MinX = -2;
     public float MaxX =  2;
     public float MinY = -5;
     public float MaxY =  0;
-    
+
+    private void Start()
+    {
+        // 처음 시작 위치 저장
+        _originPosition = transform.position;
+    }
     
     
     private void Update()
     {
-        // 1. 키보드 입력을 감지한다. 
-        // 유니티에서는 Input이라고 하는 모듈이 입력에 관한 모든것을 담당하다.
-        float h = Input.GetAxisRaw("Horizontal"); // 수평 입력에 대한 값을 -1, 0, 1로 가져온다.
-        float v = Input.GetAxisRaw("Vertical");   // 수직 입력에 대한 값을 -1, 0, 1로 가져온다.
-
-        Debug.Log($"h: {h}, v: {v}");
         if (Input.GetKeyDown(KeyCode.Q))
         {
             Speed++;
@@ -53,6 +56,19 @@ public class PlayerMove : MonoBehaviour
             // 1.2 ~ 12
             finalSpeed = finalSpeed * ShiftSpeed;
         }
+
+        if (Input.GetKey(KeyCode.R))
+        {
+            // 원점으로 돌아간다.
+            TranslateToOrigin(finalSpeed);
+            return;
+        }
+        
+        
+        // 1. 키보드 입력을 감지한다. 
+        // 유니티에서는 Input이라고 하는 모듈이 입력에 관한 모든것을 담당하다.
+        float h = Input.GetAxisRaw("Horizontal"); // 수평 입력에 대한 값을 -1, 0, 1로 가져온다.
+        float v = Input.GetAxisRaw("Vertical");   // 수직 입력에 대한 값을 -1, 0, 1로 가져온다.
         
         
         // 2. 입력으로부터 방향을 구한다.
@@ -106,4 +122,15 @@ public class PlayerMove : MonoBehaviour
         
         transform.position = newPosition;         // 새로운 위치로 갱신
     }
+
+    private void TranslateToOrigin(float speed)
+    {
+        // 방향을 구한다.
+        Vector2 direction = _originPosition - (Vector2)transform.position;
+        
+        // 이동을 한다.
+        transform.Translate(direction * speed * Time.deltaTime);
+    }
+    
+    
 }
