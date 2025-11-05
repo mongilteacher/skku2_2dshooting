@@ -37,4 +37,20 @@ public class Bullet : MonoBehaviour
         Vector2 newPosition = position + direction * _speed * Time.deltaTime;
         transform.position = newPosition;
     }
+
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        // 총알은 Enemy와만 충돌 이벤트를 처리한다.
+        if (other.CompareTag("Enemy") == false) return;
+
+        
+        // GetComponent는 게임오브젝트에 붙어있는 컴포넌트를 가져올수있다. 
+        Enemy enemy = other.gameObject.GetComponent<Enemy>();
+        
+        Debug.Log(enemy.Health);
+        
+        Destroy(other.gameObject);
+        Destroy(gameObject);
+    }
 }
