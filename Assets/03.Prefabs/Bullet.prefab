@@ -104,6 +104,7 @@ MonoBehaviour:
   StartSpeed: 1
   EndSpeed: 7
   Duration: 0.5
+  Damage: 60
 --- !u!60 &3404253925138492727
 PolygonCollider2D:
   m_ObjectHideFlags: 0

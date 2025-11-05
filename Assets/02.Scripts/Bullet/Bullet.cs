@@ -11,6 +11,9 @@ public class Bullet : MonoBehaviour
     public float Duration     = 1.2f;
     private float _speed;
 
+    [Header("공격력")] 
+    public float Damage;
+
     private void Start()
     {
         _speed = StartSpeed;
@@ -43,14 +46,13 @@ public class Bullet : MonoBehaviour
     {
         // 총알은 Enemy와만 충돌 이벤트를 처리한다.
         if (other.CompareTag("Enemy") == false) return;
-
         
         // GetComponent는 게임오브젝트에 붙어있는 컴포넌트를 가져올수있다. 
         Enemy enemy = other.gameObject.GetComponent<Enemy>();
         
-        Debug.Log(enemy.Health);
+        // 객체간의 상호 작용을 할때 : 묻지말고 시켜라(디미터의 법칙)
+        enemy.Hit(Damage);
         
-        Destroy(other.gameObject);
         Destroy(gameObject);
     }
 }
