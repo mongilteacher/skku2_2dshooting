@@ -4,7 +4,10 @@ public class EnemySpawner : MonoBehaviour
 {
     // 과제 3. 일정 시간마다 자신의 위치에 적을 생성
 
-    public GameObject EnemyPrefab;
+    // 프리팹을 참조할 배열
+    public GameObject[] EnemyPrefabs;
+ 
+    
     public float CoolTime = 2f;
     private float _timer;
 
@@ -28,8 +31,16 @@ public class EnemySpawner : MonoBehaviour
             _timer = 0f;
             
             // 3. 에너미프리팹으로부터 생성
-            GameObject enemyObject = Instantiate(EnemyPrefab);
-            enemyObject.transform.position = transform.position;
+            if (UnityEngine.Random.Range(0, 100) > 70)
+            {
+                GameObject enemyObject = Instantiate(EnemyPrefabs[(int)EEnemyType.Directional]);       // 70%
+                enemyObject.transform.position = transform.position;
+            }
+            else 
+            {
+                GameObject enemyObject = Instantiate(EnemyPrefabs[(int)EEnemyType.Trace]);             // 30%
+                enemyObject.transform.position = transform.position;
+            }
         }
     }
 
