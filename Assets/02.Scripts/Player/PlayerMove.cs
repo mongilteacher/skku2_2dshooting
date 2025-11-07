@@ -14,9 +14,8 @@ public class PlayerMove : MonoBehaviour
     
     // 필요 속성:
     [Header("능력치")]
-    public float Speed = 3;
-    public float MaxSpeed = 10;
-    public float MinSpeed = 1;
+    private float _speed = 3;
+    
     public float ShiftSpeed = 1.2f;
     
     [Header("시작위치")]
@@ -34,23 +33,18 @@ public class PlayerMove : MonoBehaviour
         // 처음 시작 위치 저장
         _originPosition = transform.position;
     }
+
+    public void SpeedUp(int value)
+    {
+        _speed += value;
+        
+        //_speed = Mathf.Min(_speed, MaxSpeed);
+    }
     
     
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            Speed++;
-        }
-        else if (Input.GetKey(KeyCode.E))
-        {
-            Speed--;
-        }
-        
-        // 1 ~ 10
-        Speed = Mathf.Clamp(Speed, MinSpeed, MaxSpeed);
-        
-        float finalSpeed = Speed;
+        float finalSpeed = _speed;
         if (Input.GetKey(KeyCode.LeftShift))
         {
             // 1.2 ~ 12
