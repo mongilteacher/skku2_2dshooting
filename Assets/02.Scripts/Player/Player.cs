@@ -13,4 +13,9 @@ public class Player : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    public void Heal(float value)
+    {
+        _health += value;
+    }
 }

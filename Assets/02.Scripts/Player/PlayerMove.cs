@@ -34,7 +34,7 @@ public class PlayerMove : MonoBehaviour
         _originPosition = transform.position;
     }
 
-    public void SpeedUp(int value)
+    public void SpeedUp(float value)
     {
         _speed += value;
         
