@@ -809,6 +809,8 @@ GameObject:
   - component: {fileID: 1667411932}
   - component: {fileID: 1667411933}
   - component: {fileID: 1667411934}
+  - component: {fileID: 1667411936}
+  - component: {fileID: 1667411935}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1011,6 +1013,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36441bbce90ebd64c99c17fa3bd15932, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Speed: 3
+--- !u!114 &1667411935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1667411927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14cc3345826489f409129239c0d9497d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1667411936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1667411927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a44012d782793894bb82b38b3e5f1774, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShiftSpeed: 1.2
+  MinX: -2
+  MaxX: 2
+  MinY: -5
+  MaxY: 0
 --- !u!1 &1813618839
 GameObject:
   m_ObjectHideFlags: 0

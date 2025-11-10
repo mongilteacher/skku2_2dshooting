@@ -2,7 +2,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 // 플레이어 이동
-public class PlayerMove : MonoBehaviour
+public class PlayerManualMove : MonoBehaviour
 {
     // 목표
     // "키보드 입력"에 따라 "방향"을 구하고 그 방향으로 이동시키고 싶다.
@@ -13,8 +13,7 @@ public class PlayerMove : MonoBehaviour
     // 3. 이동
     
     // 필요 속성:
-    [Header("능력치")]
-    private float _speed = 3;
+
     
     public float ShiftSpeed = 1.2f;
     
@@ -28,23 +27,22 @@ public class PlayerMove : MonoBehaviour
     public float MinY = -5;
     public float MaxY =  0;
 
+    private Player _player;
+    
     private void Start()
     {
+        // 캐싱
+        _player = GetComponent<Player>();
+        
         // 처음 시작 위치 저장
         _originPosition = transform.position;
     }
 
-    public void SpeedUp(float value)
-    {
-        _speed += value;
-        
-        //_speed = Mathf.Min(_speed, MaxSpeed);
-    }
+ 
     
-    
-    private void Update()
+    public void Execute()
     {
-        float finalSpeed = _speed;
+        float finalSpeed = _player.Speed;
         if (Input.GetKey(KeyCode.LeftShift))
         {
             // 1.2 ~ 12
