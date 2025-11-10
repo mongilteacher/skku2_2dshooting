@@ -3,10 +3,12 @@ using UnityEngine;
 public class PlayerAutoMove : MonoBehaviour
 {
     private Player _player;
+    private Animator _animator;
 
     private void Start()
     {
-        _player = gameObject.GetComponent<Player>();
+        _player =  gameObject.GetComponent<Player>();
+        _animator = gameObject.GetComponent<Animator>();
     }
     
     public void Execute()
@@ -15,7 +17,8 @@ public class PlayerAutoMove : MonoBehaviour
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         if (enemies == null || enemies.Length == 0)
         {
-            // 원점으로 돌아가는 로직
+            // 적이없다면 움직이지 않는다.
+            _animator.Play("Idle");
             return;
         }
 
@@ -39,11 +42,13 @@ public class PlayerAutoMove : MonoBehaviour
         if (enemyPosition.x < transform.position.x)
         {
             direction.x = -1;
+            _animator.Play("Left");
         }
         // 4. 오른쪽이면 오른쪽이동
         else
         {
             direction.x = 1;
+            _animator.Play("Right");
         }
         
         transform.Translate(direction * _player.Speed * Time.deltaTime);
