@@ -44,12 +44,12 @@ public class Item : MonoBehaviour
     {
         if (other.CompareTag("Player") == false) return;
         
-        Apply(other);
+        Apply();
 
         Destroy(gameObject);
     }
 
-    private void Apply(Collider2D other)
+    private void Apply()
     {
         // 아이템 타입에 따라서 다르게 적용
         switch (Type)

@@ -21,6 +21,7 @@ public class PlayerAutoMove : MonoBehaviour
         {
             // 적이없다면 움직이지 않는다.
             _animator.Play("Idle");
+            MoveToOrigin();
             return;
         }
 

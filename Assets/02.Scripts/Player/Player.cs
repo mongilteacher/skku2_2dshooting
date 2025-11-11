@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
 
     private float _attackCoolTime = 1f;
     private const float MaxAttackCoolTime = 0.2f;
-    public float AttackCoolTime = 1f;
+    public float AttackCoolTime => _attackCoolTime;
     
 
     private void Start()
