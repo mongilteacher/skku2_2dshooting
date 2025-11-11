@@ -15,28 +15,27 @@ public class PlayerFire : MonoBehaviour
     public Transform SubFirePositionLeft;
     public Transform SubFirePositionRight;
 
-    [Header("쿨타임")] 
-    public float CoolTime = 0.6f;
     private float _coolTimer;
 
-    [Header("자동모드")] 
-    public bool AutoMode = false;
+    private Player _player;
+
+    private void Awake()
+    {
+        _player = GetComponent<Player>();
+        _coolTimer = _player.AttackCoolTime;
+    }
 
     
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Alpha1)) AutoMode = true;
-        if(Input.GetKeyDown(KeyCode.Alpha2)) AutoMode = false;
-        
-        
         _coolTimer -= Time.deltaTime;
         if (_coolTimer > 0) return;     // 조기 리턴
         
         // 1. 발사 버튼을 누르고 있거나 (혹은) or == || 자동 모드라면...
-        if (Input.GetKey(KeyCode.Space) || AutoMode)
+        if (Input.GetKey(KeyCode.Space) || _player.AutoMode)
         {
             // 발사하고 나면 쿨타이머를 초기화
-            _coolTimer = CoolTime;
+            _coolTimer = _player.AttackCoolTime;
 
             // 유니티에서 게임 오브젝트를 생성할때는 new가 instaintate 라는 메서드를 이용한다.
             // 클래스 -> 객체(속성+기능) -> 메모리에 로드된 객체를 인스턴스
@@ -49,11 +48,7 @@ public class PlayerFire : MonoBehaviour
             MakeSubBullets();
         }
     }
-
-    public void SpeedUp(float value)
-    {
-        CoolTime -= value;
-    }
+    
 
     private void MakeBullets()
     {
