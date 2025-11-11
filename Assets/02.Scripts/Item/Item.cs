@@ -16,11 +16,12 @@ public class Item : MonoBehaviour
 
     public float WaitTime = 2f;
     public float MoveSpeed = 5f;
-    
-    private GameObject _playerObject;
-    private void Start()
+
+    private Player _player;
+
+    private void Awake()
     {
-        _playerObject = GameObject.FindGameObjectWithTag("Player");
+        _player = FindAnyObjectByType<Player>();
     }
     
     private void Update()
@@ -29,10 +30,10 @@ public class Item : MonoBehaviour
         if (WaitTime > 0) return;
         
         // 1. 플레이어를 찾는다.
-        if (_playerObject == null) return;
+        if (_player == null) return;
 
         // 2. 방향을 구한다.
-        Vector2 direction = _playerObject.transform.position - transform.position;
+        Vector2 direction = _player.transform.position - transform.position;
             
         // 3. 이동한다.
         transform.Translate(direction * MoveSpeed * Time.deltaTime);
@@ -43,34 +44,31 @@ public class Item : MonoBehaviour
     {
         if (other.CompareTag("Player") == false) return;
         
-        Apply(other);
+        Apply();
 
         Destroy(gameObject);
     }
 
-    private void Apply(Collider2D other)
+    private void Apply()
     {
         // 아이템 타입에 따라서 다르게 적용
         switch (Type)
         {
             case EItemType.MoveSpeedUp:
             {
-                PlayerManualMove playerManualMove = other.GetComponent<PlayerManualMove>();
-                //playerManualMove.SpeedUp(Value);
+                _player.MoveSpeedUp(Value);
                 break;
             }
 
             case EItemType.AttackSpeedUp:
             {
-                PlayerFire playerFire = other.GetComponent<PlayerFire>();
-                playerFire.SpeedUp(Value);
+                _player.AttackSpeedUp(Value);
                 break;
             }
 
             case EItemType.HealthUp:
             {
-                Player player = other.GetComponent<Player>();
-                player.Heal(Value);
+                _player.Heal(Value);
                 break;
             }
         }

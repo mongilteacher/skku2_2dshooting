@@ -4,11 +4,13 @@ public class PlayerAutoMove : MonoBehaviour
 {
     private Player _player;
     private Animator _animator;
+    private Vector2 _originPosition;
 
     private void Start()
     {
         _player =  gameObject.GetComponent<Player>();
         _animator = gameObject.GetComponent<Animator>();
+        _originPosition = transform.position;
     }
     
     public void Execute()
@@ -19,6 +21,7 @@ public class PlayerAutoMove : MonoBehaviour
         {
             // 적이없다면 움직이지 않는다.
             _animator.Play("Idle");
+            MoveToOrigin();
             return;
         }
 
@@ -51,9 +54,18 @@ public class PlayerAutoMove : MonoBehaviour
             _animator.Play("Right");
         }
         
-        transform.Translate(direction * _player.Speed * Time.deltaTime);
+        transform.Translate(direction * _player.MoveSpeed * Time.deltaTime);
 
         // 5. 적이 없다면 origin이동
+    }
+
+    private void MoveToOrigin()
+    {
+        // 방향을 구한다.
+        Vector2 direction = _originPosition - (Vector2)transform.position;
+        
+        // 이동을 한다.
+        transform.Translate(direction * _player.MoveSpeed * Time.deltaTime);
     }
     
     

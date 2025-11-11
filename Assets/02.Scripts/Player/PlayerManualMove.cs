@@ -33,7 +33,7 @@ public class PlayerManualMove : MonoBehaviour
     
     public void Execute()
     {
-        float finalSpeed = _player.Speed;
+        float finalSpeed = _player.MoveSpeed;
         if (Input.GetKey(KeyCode.LeftShift))
         {
             finalSpeed = finalSpeed * ShiftSpeed;

@@ -22,6 +22,14 @@ public class Enemy : MonoBehaviour
     [Header("아이템 프리팹")] 
     public GameObject[] ItemPrefabs;
     public int[] ItemWeights;
+
+
+    private GameObject _playerObject;
+
+    private void Start()
+    {
+        _playerObject = GameObject.FindGameObjectWithTag("Player");
+    }
     
     private void Update()
     {
@@ -50,8 +58,9 @@ public class Enemy : MonoBehaviour
     private void MoveTrace()
     {
         // 1. 플레이어의 위치를 구한다.
-        GameObject playerObject = GameObject.FindWithTag("Player");
-        Vector2 playerPosition = playerObject.transform.position;
+        if (_playerObject == null) return;
+        
+        Vector2 playerPosition = _playerObject.transform.position;
 
         // 2. 위치에 따라 방향을 구한다.
         Vector2 direction = playerPosition - (Vector2)transform.position;
