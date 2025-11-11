@@ -23,6 +23,9 @@ public class Enemy : MonoBehaviour
     public GameObject[] ItemPrefabs;
     public int[] ItemWeights;
 
+    [Header("폭발 프리팹")]
+    public GameObject ExplosionPrefab;
+    
 
     private GameObject _playerObject;
 
@@ -79,8 +82,14 @@ public class Enemy : MonoBehaviour
         if (_health <= 0)
         {
             DropItem();
+            MakeExplosionEffect();
             Destroy(this.gameObject);
         }
+    }
+
+    private void MakeExplosionEffect()
+    {
+        Instantiate(ExplosionPrefab, transform.position, Quaternion.identity);
     }
 
     private void DropItem()

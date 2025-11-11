@@ -110,6 +110,7 @@ MonoBehaviour:
   - {fileID: 4657793838664678642, guid: db59dacc4edca1e44bd8f9831a7b175b, type: 3}
   - {fileID: 3349879079686025164, guid: 0b4dc9f222e67fd469e1742419dd040d, type: 3}
   ItemWeights: 140000000a00000046000000
+  ExplosionPrefab: {fileID: 725748389856807714, guid: 4bda94453d2ca7444a0fff05b2d425f5, type: 3}
 --- !u!50 &2070324744979204109
 Rigidbody2D:
   serializedVersion: 5
