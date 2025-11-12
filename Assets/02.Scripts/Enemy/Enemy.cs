@@ -91,7 +91,7 @@ public class Enemy : MonoBehaviour
         MakeExplosionEffect();
 
         ScoreManager scoreManager = FindAnyObjectByType<ScoreManager>();
-        scoreManager.AddScore(100); // todo: 매직넘버 수정
+        scoreManager.AddScore(100); // todo: 매직넘버 수정@
         
         // 응집도를 높혀라
         // 응집도 : '데이터'와 '데이터를 조작하는 로직'이 얼마나 잘 모였있냐

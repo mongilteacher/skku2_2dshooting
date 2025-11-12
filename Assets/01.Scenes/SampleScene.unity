@@ -459,7 +459,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 000000009984a05c
+  m_ApplyToSortingLayers: 000000009984a05c09e9e496
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -757,7 +757,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: -1763383031
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!224 &836550372
@@ -1244,7 +1244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec3fca4c430b5304382b59fa91262e49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentScoreTextUI: {fileID: 716942440}
+  _currentScoreTextUI: {fileID: 716942440}
 --- !u!1001 &1527415620
 PrefabInstance:
   m_ObjectHideFlags: 0
