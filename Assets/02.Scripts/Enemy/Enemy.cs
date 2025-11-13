@@ -81,10 +81,25 @@ public class Enemy : MonoBehaviour
 
         if (_health <= 0)
         {
-            DropItem();
-            MakeExplosionEffect();
-            Destroy(this.gameObject);
+           Death();
         }
+    }
+
+    private void Death()
+    {
+        DropItem();
+        MakeExplosionEffect();
+
+        ScoreManager scoreManager = FindAnyObjectByType<ScoreManager>();
+        scoreManager.AddScore(100); // todo: 매직넘버 수정@
+        
+        // 응집도를 높혀라
+        // 응집도 : '데이터'와 '데이터를 조작하는 로직'이 얼마나 잘 모였있냐
+        // 응집도를 높이고, 필요한 것만 외부에 공개하는 것을 '캡슐화'
+        // scoreManager.CurrentScoreTextUI.text = $"현재 점수: {scoreManager.CurrentScore}";
+        
+        
+        Destroy(this.gameObject);
     }
 
     private void MakeExplosionEffect()
