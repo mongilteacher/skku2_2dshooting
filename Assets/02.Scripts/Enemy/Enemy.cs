@@ -90,8 +90,14 @@ public class Enemy : MonoBehaviour
         DropItem();
         MakeExplosionEffect();
 
-        ScoreManager scoreManager = FindAnyObjectByType<ScoreManager>();
-        scoreManager.AddScore(100); // todo: 매직넘버 수정@
+        // 점수 관리자는 인스터가 단 하나다. 혹은 단 하나임을 보장해야 한다.
+        // 아무대서나 빠르게 접근하고 싶다.
+        // 싱글톤 패턴
+        // 관리자(Manager) -> 관리자의 인스턴스(객체)는 보통 하나입니다.
+        
+        ScoreManager.Instance.AddScore(100); // todo: 매직넘버 수정@
+        
+     
         
         // 응집도를 높혀라
         // 응집도 : '데이터'와 '데이터를 조작하는 로직'이 얼마나 잘 모였있냐

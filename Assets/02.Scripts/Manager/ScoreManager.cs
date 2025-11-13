@@ -3,9 +3,25 @@ using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
-    // 응집도를 높혀라
-    // 응집도 : '데이터'와 '데이터를 조작하는 로직'이 얼마나 잘 모였있냐
-    // 응집도를 높이고, 필요한 것만 외부에 공개하는 것을 '캡슐화'
+    // 단하나여야 한다.
+    // 전역적인 접근점을 제공해야한다.
+    // 게임 개발에서는 Manager(관리자) 클래스를 보통 싱글톤 패턴으로 사용하는것이 관행이다.
+    private static ScoreManager _instance = null;
+    public static ScoreManager Instance => _instance;
+    private void Awake()
+    {
+        // 인스턴스가 이미 생성(참조)된게 있다면
+        // 후발주자들은 삭제해버린다.
+        if (_instance != null)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        
+        _instance = this;
+    }
+    
+    
     
     [SerializeField]
     private Text _currentScoreTextUI;
