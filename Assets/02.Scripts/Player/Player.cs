@@ -10,17 +10,14 @@ public class Player : MonoBehaviour
     private bool _autoMode = false;
     public bool AutoMode => _autoMode;
     
-    private float _health = 3;
     private const float MaxHealth = 10;
-    public float Health => _health;
+    public float Health = 0;
 
-    private float _moveSpeed = 2;
     private const float MaxMoveSpeed = 4;
-    public float MoveSpeed => _moveSpeed;
+    public float MoveSpeed = 2;
 
-    private float _attackCoolTime = 1f;
     private const float MaxAttackCoolTime = 0.2f;
-    public float AttackCoolTime => _attackCoolTime;
+    public float AttackCoolTime = 1f;
     
 
     private void Start()
@@ -47,9 +44,9 @@ public class Player : MonoBehaviour
 
     public void Hit(float damage)
     {
-        _health -= damage;
+        Health -= damage;
 
-        if (_health <= 0)
+        if (Health <= 0)
         {
             Destroy(gameObject);
         }
@@ -57,16 +54,16 @@ public class Player : MonoBehaviour
 
     public void Heal(float value)
     {
-        _health = Math.Min(_health + value, MaxHealth);
+        Health = Math.Min(Health + value, MaxHealth);
     }
 
     public void AttackSpeedUp(float value)
     {
-        _attackCoolTime = Math.Max(_attackCoolTime - value, MaxAttackCoolTime);
+        AttackCoolTime = Math.Max(AttackCoolTime - value, MaxAttackCoolTime);
     }
 
     public void MoveSpeedUp(float value)
     {
-        _moveSpeed = Math.Min(_moveSpeed + value, MaxMoveSpeed);
+        MoveSpeed = Math.Min(MoveSpeed + value, MaxMoveSpeed);
     }
 }
