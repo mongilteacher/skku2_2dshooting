@@ -15,6 +15,9 @@ public class PlayerFire : MonoBehaviour
     public Transform SubFirePositionLeft;
     public Transform SubFirePositionRight;
 
+    [Header("사운드")] 
+    public AudioSource FireSound;
+    
     private float _coolTimer;
 
     private Player _player;
@@ -34,6 +37,8 @@ public class PlayerFire : MonoBehaviour
         // 1. 발사 버튼을 누르고 있거나 (혹은) or == || 자동 모드라면...
         if (Input.GetKey(KeyCode.Space) || _player.AutoMode)
         {
+            FireSound.Play();
+            
             // 발사하고 나면 쿨타이머를 초기화
             _coolTimer = _player.AttackCoolTime;
 
