@@ -1,7 +1,8 @@
 using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
-
+    
+    
 // Enum : 열거형 : 기억하기 어려운 상수들을 기억하기 쉬운 이름 하나로 묶어(그룹) 관리하는 표현 방식
 public enum EEnemyType
 {
